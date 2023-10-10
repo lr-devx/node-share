@@ -6,8 +6,8 @@ const app = express();
 
 const rootPath = process.argv[2] || __dirname;
 
-const pTemplate = fs.readFileSync(__dirname + "/pages/template.html", "utf-8")
-const pNotFound = fs.readFileSync(__dirname + "/pages/404.html", "utf-8")
+const pTemplate = fs.readFileSync(__dirname + "/pages/template.html", "utf-8");
+const pNotFound = fs.readFileSync(__dirname + "/pages/404.html", "utf-8");
 
 app.use("/", express.static(rootPath));
 
