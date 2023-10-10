@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+        }
+      
+        h1 {
+          color: #333;
+        }
+      
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+      
+        li {
+          margin-bottom: 5px;
+          margin-left: 10px;
+        }
+      
+        a {
+          color: blue;
+          text-decoration: none;
+        }
+      
+        a:hover {
+          text-decoration: underline;
+        }
+
+        .master {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+  <h1>Shared items:</h1>
+  <ul>
+    {{files}}
+  </ul>
+</body>
+</html>
