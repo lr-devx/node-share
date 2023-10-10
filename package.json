@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Node-Share is an easy-to-use utility to share files across networks",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "Alian/DEAD",
   "license": "MIT",
   "dependencies": {
