@@ -7,8 +7,9 @@ Node-Share is an easy-to-use utility for sharing files across your network(s)
 git clone https://github.com/aliandead/node-share
 ```
 
-2. Install packages
+2. Install the necessary packages
 ```batch
+cd node-share
 npm install
 ```
 
