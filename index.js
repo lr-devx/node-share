@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+const serverPort = 3888;
 const rootPath = process.argv[2] || __dirname;
 
 const pTemplate = fs.readFileSync(__dirname + "/pages/template.html", "utf-8");
@@ -33,6 +34,7 @@ app.all("*", (req, res) => {
     );
 });
 
-app.listen(3888, () => {
+app.listen(serverPort, () => {
     console.log("[INFO] Shared server started");
+    console.log(`[INFO] Live at http://localhost:${serverport}`);
 });
