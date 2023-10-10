@@ -36,5 +36,5 @@ app.all("*", (req, res) => {
 
 app.listen(serverPort, () => {
     console.log("[INFO] Shared server started");
-    console.log(`[INFO] Live at http://localhost:${serverport}`);
+    console.log(`[INFO] Live at http://localhost:${serverPort}`);
 });
