@@ -4,15 +4,34 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
-const serverPort = 3888;
-const rootPath = process.argv[2] || __dirname;
+const config = require("./config.json");
+
+const serverPort = config.port || 3888;
+const rootPath   = config.rootPath || __dirname;
 
 const pTemplate = fs.readFileSync(__dirname + "/pages/template.html", "utf-8");
 const pNotFound = fs.readFileSync(__dirname + "/pages/404.html", "utf-8");
 
-app.use("/", express.static(rootPath));
+const whitelistMiddleware = (req, res, next) => {
+    if (!config.useWhitelist) {
+        next();
+        return;
+    }
 
-app.all("*", (req, res) => {
+    var requestIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    
+    if (!config.whitelistedIPs.includes(requestIp)) {
+        console.log(`[INFO] Denied access to ${requestIp}!`);
+        res.status(403).send("Access Denied");
+        return;
+    }
+
+    next();
+};
+
+app.use("/", whitelistMiddleware, express.static(rootPath));
+
+app.all("*", whitelistMiddleware, (req, res) => {
     const accessPath = decodeURIComponent(rootPath + req.url);
     if (!fs.existsSync(accessPath)) {
         res.send(
@@ -34,7 +53,7 @@ app.all("*", (req, res) => {
     );
 });
 
-app.listen(serverPort, () => {
+app.listen(serverPort, "0.0.0.0", () => {
     console.log("[INFO] Shared server started");
     console.log(`[INFO] Live at http://localhost:${serverPort}`);
 });
